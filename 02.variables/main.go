@@ -34,7 +34,7 @@ func main() {
 	var google = "https://www.google.com/"
 	fmt.Printf("variable website: %s of type %T\n", google, google)
 
-	// no var variable
+	// no var variable := (walrus operator)
 	yahoo := "https://www.yahoo.com/"
 	fmt.Printf("variable yahoo: %s of type %T\n", yahoo, yahoo)
 
