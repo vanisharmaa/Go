@@ -81,11 +81,11 @@ func PerformPostJsonRequest(myUrl string) {
 	fmt.Printf("Type of request body = %T\n", requestBody)
 	response, err := http.Post(myUrl, "Application/json", requestBody)
 
-	defer response.Body.Close()
-
 	if err != nil {
 		panic(err)
 	}
+
+	defer response.Body.Close()
 
 	content, err := io.ReadAll(response.Body)
 
