@@ -16,7 +16,9 @@ type course struct {
 func main() {
 	fmt.Println("Welcome to JSON in Golang")
 	// Encoding the JSON
-	EncodeJson()
+	// EncodeJson()
+
+	DecodeJson()
 }
 
 func EncodeJson() {
@@ -38,4 +40,44 @@ func EncodeJson() {
 	}
 
 	fmt.Printf("%s\n", finalJSON) // nil is read as null in json
+}
+
+func DecodeJson() {
+	jsonData := []byte(`
+		{
+			"courseName": "go bootcamp",
+			"Price": 499,
+			"website": "udemy.com",
+			"tags": [
+					"backend",
+					"frontend",
+					"server"
+			]
+		}
+	`)
+
+	var course1 course
+
+	isValid := json.Valid(jsonData)
+
+	if isValid {
+		fmt.Println("json is valid")
+		json.Unmarshal(jsonData, &course1)
+		fmt.Printf("%#v\n ", course1)
+		fmt.Printf("type of course1 is %T and json data is of type %T\n", course1, jsonData)
+	} else {
+		fmt.Println("JSON NOT VALID!")
+	}
+
+	// key-value pair
+
+	var myOnlineData map[string]interface{}
+	json.Unmarshal(jsonData, &myOnlineData)
+	fmt.Println(myOnlineData)
+
+	for k, v := range myOnlineData {
+		fmt.Println(k, " -> ", v)
+		fmt.Printf("Type of value is %T\n", v)
+
+	}
 }
